@@ -35,6 +35,8 @@
 
 
     <script>
+        const API_BASE_URL="https://balkaninsight.com/wp-json/wp/v2/posts";
+
         const singleNewsContainer = document.querySelector('.single-page');
         const urlParams = new URLSearchParams(window.location.search);
         const postId = urlParams.get('post_id');
@@ -43,7 +45,7 @@
         const fetchSingleNews = async function(post_id){
             try{
                 loader.style.display='block';
-         const res = await fetch(`https://balkaninsight.com/wp-json/wp/v2/posts/${post_id}?_embed=1`);
+         const res = await fetch(`${API_BASE_URL}/${post_id}?_embed=1`);
          const data= await res.json();
          renderSingleNews(data);
          loader.style.display='none';
@@ -66,9 +68,6 @@
         };
 
         fetchSingleNews(postId);
-
-
-
     </script>
 </body>
 </html>

@@ -1,13 +1,11 @@
 
+const API_BASE_URL="https://balkaninsight.com/wp-json/wp/v2/posts";
+
 const newsContainer = document.querySelector('.news');
-const btnAlb=document.querySelector('.btnAlbania');
-const btnBlg=document.querySelector('.btnBulgaria');
-const btnCrt=document.querySelector('.btnCroatia');
 const loader=document.querySelector('.loader');
 const loadBtn=document.querySelector('.loadMore__btn');
 const loader2=document.querySelector('.loadMore__loader')
-
-const ctgButtons=document.querySelectorAll(".category-button")
+const ctgButtons=document.querySelectorAll(".category-button");
 ctgButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
     let lastCtg=+btn.getAttribute("value");
@@ -59,40 +57,35 @@ let html = `<a href="single.html?post_id=${res.id}" style="text-decoration:none"
 </article>
 </a>`;
 newsContainer.insertAdjacentHTML('beforeend',html);
-
-});
+ });
 };
-
-
 const fetchNews= async function(id=currentCategory){
     try{
         currentCategory=id;
     newsContainer.innerHTML = '';
     displayLoaders(loader);
     categoryID=id;
-    const res = await fetch(`https://balkaninsight.com/wp-json/wp/v2/posts?page=1&_embed=1&categories=${id}`);
+    const res = await fetch(`${API_BASE_URL}?page=1&_embed=1&categories=${id}`);
     const data= await res.json();
     renderNews(data);
     hideLoaders(loader);
     }catch(err){
-        console.log("EROR LALALALALA",err);
+        console.log("This went wrong:",err);
     }
-
 };
 
-
-//Load more button
+//Load more
 let page=1;
 fetchLoadMore = async function(){
     try{
     displayLoaders(loader2);
     page++;
-    const res = await fetch(`https://balkaninsight.com/wp-json/wp/v2/posts?page=${page}&_embed=1&categories=${categoryID}`);
+    const res = await fetch(`${API_BASE_URL}?page=${page}&_embed=1&categories=${categoryID}`);
     const data= await res.json();
     renderNews(data);
     hideLoaders(loader2);
     }catch(err){
-        console.log("ERROR LALALALALALA",err)
+        console.log("This went wrong:",err)
     }
 }
 loadBtn.addEventListener('click',fetchLoadMore);
