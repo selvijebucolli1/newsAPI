@@ -5,10 +5,12 @@
   }
 
 .single-page{
-    margin: 0 80px;
+    @include flex();
+    margin: 0 15%;
     font-size: 20px;
     img{
         width: 100%;
+        height: 80%;
         margin-top:30px;
         margin-bottom: 10px;
     }
@@ -28,6 +30,9 @@
             font-weight: bold;
             padding-bottom: 20px;   
         }
+        & figure{
+            width: 100% !important;
+        }
     }
     @media (min-width: 768px) and (max-width:1024px) {
            
@@ -39,7 +44,7 @@
 
     @media (max-width: 767px) {
         &{
-            margin: 0 10px;
+            margin: 0 5%;
         }        img{
             width: 100%;
             height: 100%;
