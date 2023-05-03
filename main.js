@@ -3,8 +3,8 @@ const API_BASE_URL="https://balkaninsight.com/wp-json/wp/v2/posts";
 
 const newsContainer = document.querySelector('.news');
 const loader=document.querySelector('.loader');
-const loadBtn=document.querySelector('.loadMore__btn');
-const loader2=document.querySelector('.loadMore__loader')
+const loadBtn=document.querySelector('.load-news__btn');
+const loader2=document.querySelector('.load-news__loader')
 const ctgButtons=document.querySelectorAll(".category-button");
 ctgButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{

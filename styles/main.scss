@@ -99,13 +99,13 @@
 
 }
 
-.news-btn{
+.load-news{
    
     @include flex();
     text-align: center;
     margin-top: 10%;
     margin-bottom: 5%;
-    .loadMore__btn{
+    &__btn{
         width: 150px;
         height: 50px;
         background-color: rgb(8, 15, 63);
@@ -116,12 +116,13 @@
         
     }
     @media (min-width: 768px) and (max-width:1024px) {
-        .loadMore__btn{
+        &__btn{
           margin-top: 8%;
+          font-size: 16px;
         }
       }
       @media (max-width: 767px) {
-        .loadMore__btn{
+        &__btn{
             margin-top: 15%;
           }
       }
