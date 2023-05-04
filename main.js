@@ -35,7 +35,6 @@ if(currentCategory){
             li.classList.remove('active');
         }
     })
-    
 }
 const displayLoaders = function(loadName){
     loadBtn.style.display='none'
@@ -71,7 +70,7 @@ const fetchNews= async function(id=currentCategory){
     renderNews(data);
     hideLoaders(loader);
     }catch(err){
-        console.log("This went wrong:",err);
+        console.error("This went wrong:",err);
     }
 };
 
@@ -86,7 +85,7 @@ fetchLoadMore = async function(){
     renderNews(data);
     hideLoaders(loader2);
     }catch(err){
-        console.log("This went wrong:",err)
+        console.error("This went wrong:",err)
     }
 }
 loadBtn.addEventListener('click',fetchLoadMore);
