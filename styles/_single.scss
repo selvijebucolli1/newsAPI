@@ -1,8 +1,4 @@
-//   .single{
-//     max-width: 1728px;
-//     width: 100%;
-//     margin: 80 auto;
-//   }
+
 
 .single-page{
     @include flex();
@@ -14,6 +10,7 @@
         margin-top:30px;
         margin-bottom: 10px;
     }
+   
     .single-news{
         &__title{
             font-size: 30px;

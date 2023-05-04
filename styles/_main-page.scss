@@ -19,6 +19,13 @@ a{
   &__btn:hover{
     @include btnHover();
   }
+  & a{
+    color: black;
+    &:hover{
+      @include btnHover();
+    }
+  }
+ 
 }
 .news{
   @include grid();
