@@ -21,7 +21,7 @@ const fetchSingleNews = async function(post_id){
 const renderSingleNews = function(res){
 const html = `<article class="single-news">
 <h3 class="single-news__title">${res.yoast_head_json.title}</h3>
-<img src="${res.yoast_head_json.og_image[0].url}" alt="" class="single-news__img" />
+<img src="${res.yoast_head_json.og_image[0].url}" alt="img" class="single-news__img" />
 <div class="single-news__info">    
 <p class="single-news__date">${res.date.slice(0,10)}</p>
     <div class="single-news__content">${res.content.rendered}</div>             

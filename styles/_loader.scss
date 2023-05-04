@@ -36,7 +36,7 @@
 
 
   //second loader
-  .loadMore__loader {
+  .load-news__loader {
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -46,7 +46,7 @@
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
   }
-  .loadMore__loader::after {
+  .load-news__loader::after {
     content: '';  
     box-sizing: border-box;
     position: absolute;

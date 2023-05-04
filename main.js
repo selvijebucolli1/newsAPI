@@ -6,6 +6,7 @@ const loader=document.querySelector('.loader');
 const loadBtn=document.querySelector('.load-news__btn');
 const loader2=document.querySelector('.load-news__loader')
 const ctgButtons=document.querySelectorAll(".category-button");
+
 ctgButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
     let lastCtg=+btn.getAttribute("value");
@@ -47,10 +48,10 @@ const hideLoaders = function(loadName){
 
 const renderNews= function(data){
     data.forEach(res =>{
-let html = `<a href="single.html?post_id=${res.id}" style="text-decoration:none">
+let html = `<a href="single.html?post_id=${res.id}">
 <article class="news__articles">
 <h3 class="news__title">${res.title.rendered}</h3>
-<img src="${res.yoast_head_json.og_image[0].url}" alt="" class="news__img" />
+<img src="${res.yoast_head_json.og_image[0].url}" alt="Image" class="news__img" />
 <div class="news__info">
     <p class="news__date">${res.date.slice(0,10).split('-').join('/')}</p>
     <p class="news__description">${res.yoast_head_json.description}</div>
