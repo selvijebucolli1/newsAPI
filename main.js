@@ -7,6 +7,9 @@ const loadBtn=document.querySelector('.load-news__btn');
 const loader2=document.querySelector('.load-news__loader')
 const ctgButtons=document.querySelectorAll(".category-button");
 
+window.onbeforeunload = function() {
+    localStorage.removeItem("lastCtg");
+};
 ctgButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
     let lastCtg=+btn.getAttribute("value");
