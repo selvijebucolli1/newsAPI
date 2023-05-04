@@ -1,16 +1,12 @@
 @mixin btnHover {
   cursor: pointer;
-  color: rgb(16, 139, 255);
+  color: $accent1;
 }
 
 @mixin flex {
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (min-width: 768px) and (max-width: 1024) {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
 }
 @mixin grid {
   display: grid;
