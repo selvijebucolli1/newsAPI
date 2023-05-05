@@ -7,18 +7,16 @@ const loadBtn=document.querySelector('.load-news__btn');
 const loader2=document.querySelector('.load-news__loader')
 const ctgButtons=document.querySelectorAll(".category-button");
 
-window.onbeforeunload = function() {
-    localStorage.removeItem("lastCtg");
-};
+
 ctgButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
     let lastCtg=+btn.getAttribute("value");
-    localStorage.setItem("lastCtg",lastCtg);
+    sessionStorage.setItem("lastCtg",lastCtg);
     fetchNews(lastCtg);
 })
 });
 const albId = 206;
-let currentCategory=window.localStorage.getItem("lastCtg") || albId;
+let currentCategory=window.sessionStorage.getItem("lastCtg") || albId;
 const lists = document.querySelectorAll('li');
 
 lists.forEach(list =>{
