@@ -2,34 +2,32 @@
   max-width: 1728px;
   width: 100%;
   margin: 0 auto;
-  
 }
 .active {
   color: $accent1;
 }
-a{
+a {
   text-decoration: none;
 }
-.main-header{
+.main-header {
   @include flex();
   @include font();
   font-size: 20px;
   gap: 50px;
   margin: 50px;
-  &__btn:hover{
+  &__btn:hover {
     @include btnHover();
   }
-  & a{
+  & a {
     color: black;
-    &:hover{
+    &:hover {
       @include btnHover();
     }
   }
- 
 }
-.news{
+.news {
   @include grid();
-  margin:0 80px;
+  margin: 0 80px;
   &__articles {
     @include font();
     display: flex;
@@ -40,8 +38,8 @@ a{
     height: 100%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     &:hover {
-      transition: ease-in 0.1s;
-      transform: scale(1.1, 1.1);
+      transition: all 0.3s ease-out 0s;
+      transform: scale(1.05);
     }
   }
   &__title {
@@ -69,7 +67,7 @@ a{
     background-color: rgb(8, 15, 63);
     color: white;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background-color: rgb(31, 40, 99);
       transform: scale(1.1, 1.1);
     }
@@ -77,8 +75,8 @@ a{
 }
 //responsive
 @media (min-width: 768px) and (max-width: 1024px) {
-  .news{
-    margin:0 40px;
+  .news {
+    margin: 0 40px;
     font-size: 14px;
     &__articles {
       @include flex();
@@ -95,17 +93,18 @@ a{
       height: 20px;
     }
   }
-  .load-news{
+  .load-news {
     margin-top: 8%;
   }
 }
 @media (max-width: 767px) {
- .news{
-  margin:0 20px;
-  &__articles {
-    gap: 15px;
+  .news {
+    margin: 0 20px;
+    &__articles {
+      gap: 15px;
+    }
   }
- }
- .load-news{
-  margin-top: 15%;
-}}
+  .load-news {
+    margin-top: 15%;
+  }
+}

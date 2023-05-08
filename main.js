@@ -1,94 +1,95 @@
+const API_BASE_URL = "https://balkaninsight.com/wp-json/wp/v2/posts";
 
-const API_BASE_URL="https://balkaninsight.com/wp-json/wp/v2/posts";
+const newsContainer = document.querySelector(".news");
+const loader = document.querySelector(".loader");
+const loadBtn = document.querySelector(".load-news__btn");
+const loader2 = document.querySelector(".load-news__loader");
+const ctgButtons = document.querySelectorAll(".category-button");
 
-const newsContainer = document.querySelector('.news');
-const loader=document.querySelector('.loader');
-const loadBtn=document.querySelector('.load-news__btn');
-const loader2=document.querySelector('.load-news__loader')
-const ctgButtons=document.querySelectorAll(".category-button");
-
-
-ctgButtons.forEach(btn=>{
-    btn.addEventListener("click",()=>{
-    let lastCtg=+btn.getAttribute("value");
-    sessionStorage.setItem("lastCtg",lastCtg);
+ctgButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    let lastCtg = +btn.getAttribute("value");
+    sessionStorage.setItem("lastCtg", lastCtg);
     fetchNews(lastCtg);
-})
+  });
 });
 const albId = 206;
-let currentCategory=window.sessionStorage.getItem("lastCtg") || albId;
-const lists = document.querySelectorAll('li');
+let currentCategory = window.sessionStorage.getItem("lastCtg") || albId;
+const lists = document.querySelectorAll("li");
 
-lists.forEach(list =>{
-    list.addEventListener('click',function(){
-        lists.forEach(li =>{
-            li.classList.remove('active');
-        });
-        this.classList.add('active');
+lists.forEach((list) => {
+  list.addEventListener("click", function () {
+    lists.forEach((li) => {
+      li.classList.remove("active");
     });
+    this.classList.add("active");
+  });
 });
-if(currentCategory){
-    lists.forEach(li => {
-        if( li.getAttribute("value")==currentCategory){
-            li.classList.add('active');
-        }
-        else {
-            li.classList.remove('active');
-        }
-    })
+if (currentCategory) {
+  lists.forEach((li) => {
+    if (li.getAttribute("value") == currentCategory) {
+      li.classList.add("active");
+    } else {
+      li.classList.remove("active");
+    }
+  });
 }
-const displayLoaders = function(loadName){
-    loadBtn.style.display='none'
-    loadName.style.display='block';
-}
-const hideLoaders = function(loadName){
-    loadName.style.display='none';
-    loadBtn.style.display='block';
-}
+const displayLoaders = function (loadName) {
+  loadBtn.style.display = "none";
+  loadName.style.display = "block";
+};
+const hideLoaders = function (loadName) {
+  loadName.style.display = "none";
+  loadBtn.style.display = "block";
+};
 
-const renderNews= function(data){
-    data.forEach(res =>{
-let html = `<a href="single.html?post_id=${res.id}">
+const renderNews = function (data) {
+  data.forEach((res) => {
+    let html = `<a href="single.html?post_id=${res.id}">
 <article class="news__articles">
 <h3 class="news__title">${res.title.rendered}</h3>
-<img src="${res.yoast_head_json.og_image[0].url}" alt="This is an image." class="news__img" loading="lazy" />
+<img src="${
+      res.yoast_head_json.og_image[0].url
+    }" alt="This is an image." class="news__img" loading="lazy" />
 <div class="news__info">
-    <p class="news__date">${res.date.slice(0,10).split('-').join('/')}</p>
+    <p class="news__date">${res.date.slice(0, 10).split("-").join("/")}</p>
     <p class="news__description">${res.yoast_head_json.description}</div>
 </article>
 </a>`;
-newsContainer.insertAdjacentHTML('beforeend',html);
- });
+    newsContainer.insertAdjacentHTML("beforeend", html);
+  });
 };
-const fetchNews= async function(id=currentCategory){
-    try{
-        currentCategory=id;
-    newsContainer.innerHTML = '';
+const fetchNews = async function (id = currentCategory) {
+  try {
+    currentCategory = id;
+    newsContainer.innerHTML = "";
     displayLoaders(loader);
-    categoryID=id;
+    categoryID = id;
     const res = await fetch(`${API_BASE_URL}?page=1&_embed=1&categories=${id}`);
-    const data= await res.json();
+    const data = await res.json();
     renderNews(data);
     hideLoaders(loader);
-    }catch(err){
-        console.error("This went wrong:",err);
-    }
+  } catch (err) {
+    console.error("This went wrong:", err);
+  }
 };
 
 //Load more
-let page=1;
-fetchLoadMore = async function(){
-    try{
+let page = 1;
+fetchLoadMore = async function () {
+  try {
     displayLoaders(loader2);
     page++;
-    const res = await fetch(`${API_BASE_URL}?page=${page}&_embed=1&categories=${categoryID}`);
-    const data= await res.json();
+    const res = await fetch(
+      `${API_BASE_URL}?page=${page}&_embed=1&categories=${categoryID}`
+    );
+    const data = await res.json();
     renderNews(data);
     hideLoaders(loader2);
-    }catch(err){
-        console.error("This went wrong:",err)
-    }
-}
-loadBtn.addEventListener('click',fetchLoadMore);
+  } catch (err) {
+    console.error("This went wrong:", err);
+  }
+};
+loadBtn.addEventListener("click", fetchLoadMore);
 
 fetchNews();
